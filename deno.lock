@@ -2,6 +2,7 @@
   "version": "4",
   "specifiers": {
     "jsr:@std/path@^1.0.8": "1.0.8",
+    "jsr:@std/random@0.1": "0.1.0",
     "npm:@deno/vite-plugin@^1.0.2": "1.0.2_vite@6.0.5",
     "npm:@vitejs/plugin-vue@5.2.1": "5.2.1_vite@6.0.5_vue@3.5.13",
     "npm:autoprefixer@^10.4.20": "10.4.20_postcss@8.4.49",
@@ -13,6 +14,9 @@
   "jsr": {
     "@std/path@1.0.8": {
       "integrity": "548fa456bb6a04d3c1a1e7477986b6cffbce95102d0bb447c67c4ee70e0364be"
+    },
+    "@std/random@0.1.0": {
+      "integrity": "70a006be0ffb77d036bab54aa8ae6bd0119ba77ace0f2f56f63273d4262a5667"
     }
   },
   "npm": {
@@ -944,6 +948,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@std/path@^1.0.8",
+      "jsr:@std/random@0.1",
       "npm:@deno/vite-plugin@^1.0.2",
       "npm:@vitejs/plugin-vue@5.2.1",
       "npm:autoprefixer@^10.4.20",
