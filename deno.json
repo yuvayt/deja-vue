@@ -20,7 +20,10 @@
 		"@std/path": "jsr:@std/path@^1.0.8",
 		"@vitejs/plugin-vue": "npm:@vitejs/plugin-vue@5.2.1",
 		"autoprefixer": "npm:autoprefixer@^10.4.20",
+		"class-variance-authority": "npm:class-variance-authority@^0.7.1",
+		"clsx": "npm:clsx@^2.1.1",
 		"postcss": "npm:postcss@^8.4.49",
+		"tailwind-merge": "npm:tailwind-merge@^2.6.0",
 		"tailwindcss": "npm:tailwindcss@^3.4.17",
 		"vite": "npm:vite@6.0.5",
 		"vue": "npm:vue@3.5.13"
