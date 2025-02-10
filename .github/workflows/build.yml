@@ -1,0 +1,44 @@
+name: Build
+
+on:
+    # Runs on pushes targeting the default branch
+    push:
+        branches: [$default-branch]
+        paths-ignore:
+            - '**.md'
+    # Runs on pull requests targeting the default branch
+    pull_request:
+        branches: [$default-branch]
+        paths-ignore:
+            - '**.md'
+
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: denoland/setup-deno@v2
+              with:
+                  deno-version: v2.x
+
+            - uses: actions/cache@v4
+              with:
+                  path: |
+                      ~/.deno
+                      ~/.cache/deno
+                  key: ${{ runner.os }}-deno-${{ hashFiles('**/deno.json', '**/deno.lock') }}
+
+            - run: deno task build
+
+            - uses: actions/upload-pages-artifact@v3
+              with:
+                  path: ./dist
+                  retention-days: 1
