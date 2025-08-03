@@ -26,6 +26,7 @@
 	"nodeModulesDir": "auto",
 	"tasks": {
 		"build": "vite build",
+		"build-github": "vite build --base=/deja-vue/",
 		"dev": "vite",
 		"preview": "vite preview"
 	},

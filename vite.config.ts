@@ -6,7 +6,6 @@ import { dirname, fromFileUrl, join } from '@std/path'
 
 // https://vite.dev/config/
 export default defineConfig({
-	base: '/deja-vue/',
 	plugins: [deno(), vue(), tailwindcss()],
 	server: {
 		port: 6789,

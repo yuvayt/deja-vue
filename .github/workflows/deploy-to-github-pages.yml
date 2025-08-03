@@ -1,14 +1,9 @@
-name: Build
+name: Deploy to GitHub Pages
 
 on:
     # Runs on pushes targeting the default branch
     push:
-        branches: [$default-branch]
-        paths-ignore:
-            - '**.md'
-    # Runs on pull requests targeting the default branch
-    pull_request:
-        branches: [$default-branch]
+        branches: [main]
         paths-ignore:
             - '**.md'
 
@@ -17,7 +12,7 @@ on:
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.ref }}
-    cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+    cancel-in-progress: true
 
 jobs:
     build:
@@ -36,9 +31,25 @@ jobs:
                       ~/.cache/deno
                   key: ${{ runner.os }}-deno-${{ hashFiles('**/deno.json', '**/deno.lock') }}
 
-            - run: deno task build
+            - run: deno task build-github
 
             - uses: actions/upload-pages-artifact@v3
               with:
                   path: ./dist
                   retention-days: 1
+    
+    deploy:
+        needs: build
+
+        permissions:
+            pages: write
+            id-token: write
+
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+
+        runs-on: ubuntu-latest
+        steps:
+            - id: deployment
+              uses: actions/deploy-pages@v4
